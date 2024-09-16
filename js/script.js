@@ -23,6 +23,7 @@ function adicionarItem(item) {
     valorTotal[item] = Number.parseFloat(valorProduto[item]) * qtd[item];
     quantidade.innerHTML = qtd[item];
     total.innerHTML = valorTotal[item].toFixed(2);
+    valorCompra();
 }//<----End - adding item
 
 //Comentários Para Fins Didáticos;
@@ -45,5 +46,25 @@ function removerItem(item) {
         quantidade.innerHTML = qtd[item];
         valorTotal[item] = Number.parseFloat(valorProduto) * qtd[item];
         total.innerHTML = valorTotal[item].toFixed(2);
+        valorCompra();
     }//<---- End - removing item
 }
+
+/* A função "valorCompra" calcula o valor total da compra somando os valores de todos os itens na lista.
+
+Primeiro, a função inicializa uma variável "valor" com zero, que será usada para armazenar o valor total da compra.
+
+Ela percorre o array "valorTotal" que contém o valor acumulado de cada item e adiciona esses valores à variável "valor".
+
+Após somar os valores de todos os itens, a função atualiza o elemento HTML "valorTotalCompra" com o valor final da compra, formatado com duas casas decimais.*/
+//---->Start - function subtotal
+function valorCompra() {
+    let valorTotalCompra = document.getElementById('valorTotalCompra');
+    let valor = 0;
+
+    for (let i = 0; i < valorTotal.length; i++) {
+        valor += valorTotal[i];
+
+    }
+    valorTotalCompra.innerHTML = valor.toFixed(2);
+}//<---- End - function subtotal
